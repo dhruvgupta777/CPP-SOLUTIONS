@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        string s;
+        cin >> n >> s;
+        
+        int open = count(s.begin(), s.end(), '(');
+        int close = n - open;
+        
+       
+        if (n % 2 == 0 && open == close)
+            cout << "YES\n";
+        else
+            cout << "NO\n";
+    }
+    return 0;
+}
