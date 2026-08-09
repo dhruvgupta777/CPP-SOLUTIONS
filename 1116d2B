@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef pair<int, int> pii;
+typedef vector<int> vi;
+
+#define pb push_back
+#define f first
+#define s second
+#define all(x) x.begin(),x.end()
+#define rep(i,a,b) for(int i=a;i<b;i++)
+
+const ll MOD = 998244353;
+
+void solve() {
+    int n;
+    string s;
+    cin >> n >> s;
+
+    ll ans = 1;
+
+    // p = 0 -> positions 0,2,4,...
+    // p = 1 -> positions 1,3,5,...
+    for (int p = 0; p < 2; p++) {
+
+        int ways = 0;
+
+        // Try starting this sequence with 0 or 1
+        for (int start = 0; start <= 1; start++) {
+
+            bool ok = true;
+
+            for (int pos = p; pos < n; pos += 2) {
+
+                int index = (pos - p) / 2;
+                int expected = start ^ (index % 2);
+
+                if (s[pos] != '?' && s[pos] - '0' != expected) {
+                    ok = false;
+                    break;
+                }
+            }
+
+            if (ok)
+                ways++;
+        }
+
+        ans = ans * ways % MOD;
+    }
+
+    cout << ans << '\n';
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t;
+    cin >> t;
+
+    while (t--)
+        solve();
+
+    return 0;
+}
